@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Arjun V, Java Full Stack Developer in Chennai. Spring Boot, React, MySQL projects: EventHub and SecureBank.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Arjun V Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: big name over a blueprint grid beside a test-report card, then an interactive concurrency lab that shows what the two backend projects solve, then projects, skills and a plain ledger. */
+:root {
+  --bg: #EDF0F5;
+  --surface: #FFFFFF;
+  --surface-2: #F5F7FA;
+  --ink: #0B1424;
+  --muted: #4A5670;
+  --line: #D3DAE6;
+  --accent: #2B5BFF;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E1E9FF;
+  --ok: #17794A;
+  --ok-soft: #DDF3E7;
+  --bad: #C1301D;
+  --bad-soft: #FBE3DE;
+  --wait: #8A5A00;
+  --wait-soft: #FBEFD0;
+  --grid: rgba(11, 20, 36, 0.06);
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A101E;
+    --surface: #121A2C;
+    --surface-2: #0E1626;
+    --ink: #E9EEF8;
+    --muted: #9DAAC4;
+    --line: #25314B;
+    --accent: #7FA6FF;
+    --accent-ink: #08101F;
+    --accent-soft: #19274A;
+    --ok: #5BD08F;
+    --ok-soft: #12301F;
+    --bad: #FF8A76;
+    --bad-soft: #3A1914;
+    --wait: #F2C14E;
+    --wait-soft: #332708;
+    --grid: rgba(233, 238, 248, 0.06);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A101E;
+  --surface: #121A2C;
+  --surface-2: #0E1626;
+  --ink: #E9EEF8;
+  --muted: #9DAAC4;
+  --line: #25314B;
+  --accent: #7FA6FF;
+  --accent-ink: #08101F;
+  --accent-soft: #19274A;
+  --ok: #5BD08F;
+  --ok-soft: #12301F;
+  --bad: #FF8A76;
+  --bad-soft: #3A1914;
+  --wait: #F2C14E;
+  --wait-soft: #332708;
+  --grid: rgba(233, 238, 248, 0.06);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: baseline; padding-block: 20px; font-family: var(--font-mono); font-size: 13px; }
+.bar .mark { font-weight: 500; letter-spacing: 0.06em; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 32px 32px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.hero .wrap { padding-block: 64px 56px; display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); align-items: end; }
+@media (min-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 56px; } }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.6rem, 12.5vw, 8rem); line-height: 0.9; letter-spacing: -0.04em; margin: 0 0 24px; }
+.thesis { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.25; letter-spacing: -0.01em; max-width: 24ch; margin: 0 0 18px; text-wrap: balance; }
+.lede { max-width: 56ch; color: var(--muted); margin: 0 0 26px; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; font: 500 14px var(--font-mono); text-decoration: none; border: 1px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { transform: translateY(-1px); }
+.btn { transition: transform .15s; }
+
+.report { background: var(--surface); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; min-width: 0; }
+.report header { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; font-size: 12px; }
+.report .line { padding: 14px; display: grid; gap: 4px; border-bottom: 1px solid var(--line); }
+.report .line:last-of-type { border-bottom: 0; }
+.report .name { color: var(--ink); font-weight: 500; }
+.report .what { color: var(--muted); }
+.pass { display: inline-block; margin-right: 8px; padding: 1px 7px; background: var(--ok-soft); color: var(--ok); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; }
+.report .foot { padding: 10px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+/* sections */
+section { padding-block: 72px 0; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 4.2vw, 2.6rem); letter-spacing: -0.025em; line-height: 1.05; margin: 0; text-wrap: balance; }
+.sec-head .rule { flex: 1; height: 1px; background: var(--line); min-width: 24px; }
+.sec-intro { max-width: 62ch; color: var(--muted); margin: 0 0 28px; }
+
+/* lab */
+.lab { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .lab { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); padding: 22px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.015em; line-height: 1.15; margin: 0; }
+.card .from { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.card p.desc { margin: 0; color: var(--muted); font-size: 15px; }
+.seg { display: inline-flex; border: 1px solid var(--line); background: var(--surface-2); width: fit-content; max-width: 100%; flex-wrap: wrap; }
+.seg button { font: 500 13px var(--font-mono); padding: 8px 12px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.runrow { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.status { font-family: var(--font-mono); font-size: 13px; min-height: 2.8em; margin: 0; color: var(--muted); }
+.status.ok { color: var(--ok); }
+.status.bad { color: var(--bad); }
+
+.seatrow { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: var(--surface-2); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; }
+.seatrow .big { font-family: var(--font-display); font-weight: 800; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.threads { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 6px; }
+.t { font-family: var(--font-mono); font-size: 11px; padding: 6px 4px; text-align: center; border: 1px solid var(--line); background: var(--surface-2); color: var(--muted); transition: background .2s, color .2s, border-color .2s; }
+.t.queue { background: var(--wait-soft); color: var(--wait); border-color: var(--wait); }
+.t.win { background: var(--ok-soft); color: var(--ok); border-color: var(--ok); }
+.t.lose { background: var(--bad-soft); color: var(--bad); border-color: var(--bad); }
+.t.rej { color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin: 0; padding: 0; list-style: none; }
+.legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; border: 1px solid; }
+
+.accts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.acct { border: 1px solid var(--line); background: var(--surface-2); padding: 12px; font-family: var(--font-mono); font-size: 13px; display: grid; gap: 4px; transition: background .2s, border-color .2s; }
+.acct b { font-family: var(--font-display); font-size: 1.4rem; }
+.acct.held { background: var(--wait-soft); border-color: var(--wait); }
+.acct.dead { background: var(--bad-soft); border-color: var(--bad); }
+.acct.done { background: var(--ok-soft); border-color: var(--ok); }
+.log { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-family: var(--font-mono); font-size: 12.5px; min-height: 7.5em; align-content: start; }
+.log li { color: var(--muted); }
+.log li:last-child { color: var(--ink); }
+.disclaimer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin: 18px 0 0; }
+
+/* projects */
+.projects { display: grid; gap: 20px; }
+.project { background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 860px) { .project { grid-template-columns: 0.9fr 1.4fr; } }
+.project .head { padding: 26px; border-bottom: 1px solid var(--line); display: grid; gap: 12px; align-content: start; background: var(--surface-2); }
+@media (min-width: 860px) { .project .head { border-bottom: 0; border-right: 1px solid var(--line); } }
+.project h3 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 3vw, 2.2rem); letter-spacing: -0.025em; line-height: 1.05; margin: 0; }
+.project .sub { margin: 0; color: var(--muted); }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.stack li { font-family: var(--font-mono); font-size: 12px; padding: 3px 8px; background: var(--accent-soft); color: var(--ink); }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.links .btn { padding: 8px 12px; font-size: 13px; }
+.proof { margin-top: 6px; border-top: 2px solid var(--accent); padding-top: 12px; }
+.proof .num { font-family: var(--font-display); font-weight: 800; font-size: 3.4rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.proof .unit { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 6px 0; }
+.proof p { margin: 0; font-size: 14px; color: var(--muted); }
+.project .body { padding: 26px; display: grid; gap: 18px; align-content: start; min-width: 0; }
+.body h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; font-weight: 500; }
+.body p, .body ul { margin: 0; }
+.body ul { padding-left: 1.1em; display: grid; gap: 6px; }
+.body li::marker { color: var(--accent); }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--accent-soft); padding: 1px 5px; }
+
+/* skills */
+.skills { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.skill { background: var(--surface); border: 1px solid var(--line); padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.skill h3 { margin: 0; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.skill ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill li { font-size: 14px; padding: 3px 9px; border: 1px solid var(--line); background: var(--surface-2); }
+
+/* ledger */
+.ledger { border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 32px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+@media (min-width: 700px) { .row { grid-template-columns: 200px minmax(0, 1fr); } }
+.row .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.row .role { font-weight: 600; }
+.row .org { color: var(--muted); }
+.row ul { margin: 8px 0 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.row li::marker { color: var(--accent); }
+.two { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); }
+
+footer { margin-top: 88px; background: var(--ink); color: var(--bg); }
+footer .wrap { padding-block: 56px 48px; display: grid; gap: 20px; }
+footer h2 { font-size: clamp(2rem, 6vw, 3.6rem); max-width: 18ch; }
+footer p { margin: 0; max-width: 56ch; opacity: .8; }
+footer .btn { border-color: var(--bg); color: var(--bg); }
+footer .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.contactline { font-family: var(--font-mono); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 24px; overflow-wrap: anywhere; }
+.small { font-family: var(--font-mono); font-size: 12px; min-height: 1.4em; opacity: .8; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="bar">
+    <span class="mark">ARJUN V</span>
+    <nav aria-label="Sections">
+      <a href="#lab">Lab</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Java Full Stack Developer · Chennai</p>
+      <h1>Arjun V</h1>
+      <p class="thesis">I build Spring Boot apps and test the failure case first.</p>
+      <p class="lede">ECE graduate from VIT Vellore, now a Java full stack developer. Two live applications, EventHub and SecureBank, secured with JWT and tested under concurrent load.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn" href="https://linkedin.com/in/arjunrockesh" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+    <aside class="report" aria-label="Test results from my projects">
+      <header><span>test report</span><span>2 suites</span></header>
+      <div class="line">
+        <div class="name"><span class="pass">PASS</span>EventHub</div>
+        <div class="what">20-thread booking test. Overbooking prevented with pessimistic locking.</div>
+      </div>
+      <div class="line">
+        <div class="name"><span class="pass">PASS</span>SecureBank</div>
+        <div class="what">40 simultaneous opposite transfers in multi-threaded JUnit. No deadlock.</div>
+      </div>
+      <div class="foot">Results from the projects' own tests, as listed on my resume.</div>
+    </aside>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section id="lab">
+    <div class="sec-head"><h2>Concurrency lab</h2><span class="rule"></span></div>
+    <p class="sec-intro">The hardest bugs in EventHub and SecureBank only show up when many requests arrive at once. Run both problems below, with and without the fix I used.</p>
+    <div class="lab">
+
+      <div class="card" id="seatCard">
+        <p class="from">EventHub</p>
+        <h3>20 people, 1 seat left</h3>
+        <p class="desc">Without a lock every thread reads "1 seat left" before anyone writes. A pessimistic lock makes them take turns.</p>
+        <div class="seg" role="group" aria-label="Locking mode">
+          <button type="button" id="seatNone" aria-pressed="true">No lock</button>
+          <button type="button" id="seatLock" aria-pressed="false">Pessimistic lock</button>
+        </div>
+        <div class="seatrow"><span class="big" id="seatsLeft">1</span><span>seat left</span><span style="margin-left:auto" id="bookedCount">0 booked</span></div>
+        <div class="threads" id="threads" aria-label="20 booking threads"></div>
+        <ul class="legend">
+          <li><i style="background:var(--wait-soft);border-color:var(--wait)"></i>waiting</li>
+          <li><i style="background:var(--ok-soft);border-color:var(--ok)"></i>booked</li>
+          <li><i style="background:var(--bad-soft);border-color:var(--bad)"></i>booked too (bug)</li>
+          <li><i style="border-color:var(--line)"></i>sold out</li>
+        </ul>
+        <div class="runrow"><button type="button" class="btn primary" id="seatRun">Run 20 threads</button></div>
+        <p class="status" id="seatStatus" aria-live="polite">Press run to start 20 threads.</p>
+      </div>
+
+      <div class="card" id="xferCard">
+        <p class="from">SecureBank</p>
+        <h3>A pays B while B pays A</h3>
+        <p class="desc">Two opposite transfers start together. If each grabs its own account first, both wait forever. Locking the lower account id first removes the cycle.</p>
+        <div class="seg" role="group" aria-label="Lock order">
+          <button type="button" id="xferNaive" aria-pressed="true">Source first</button>
+          <button type="button" id="xferOrdered" aria-pressed="false">Ordered locks</button>
+        </div>
+        <div class="accts">
+          <div class="acct" id="acctA"><span>account 1</span><b>A</b><span id="ownA">free</span></div>
+          <div class="acct" id="acctB"><span>account 2</span><b>B</b><span id="ownB">free</span></div>
+        </div>
+        <ol class="log" id="xferLog" aria-live="polite"><li>T1 moves A → B. T2 moves B → A.</li></ol>
+        <div class="runrow"><button type="button" class="btn primary" id="xferRun">Run 2 transfers</button></div>
+        <p class="status" id="xferStatus">Press run to start both transfers.</p>
+      </div>
+
+    </div>
+    <p class="disclaimer">A simplified simulation of the problem. The real code is in the projects below.</p>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head"><h2>Projects</h2><span class="rule"></span></div>
+    <div class="projects">
+
+      <article class="project">
+        <div class="head">
+          <h3>EventHub</h3>
+          <p class="sub">Event ticketing platform with QR check-in</p>
+          <ul class="stack" aria-label="Tech stack"><li>Java</li><li>Spring Boot</li><li>Spring Security (JWT)</li><li>React</li><li>MySQL</li><li>Docker</li></ul>
+          <div class="links"><a class="btn primary" href="https://eventhub-six-umber.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a><a class="btn" href="https://github.com/arjunv21ac-sudo/eventhub" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="proof"><div class="num">20</div><div class="unit">threads</div><p>One test, 20 threads, no overbooked seat.</p></div>
+        </div>
+        <div class="body">
+          <div><h4>What it does</h4><p>Organizers create events and users book tickets. Each seat gets a unique QR code that is scanned at the venue gate.</p></div>
+          <div><h4>Engineering decisions</h4>
+            <ul>
+              <li>REST APIs secured with JWT and role-based access.</li>
+              <li>Pessimistic locking prevents overbooking, verified by a 20-thread test.</li>
+              <li>Deployed with Docker on Render and Vercel.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="head">
+          <h3>SecureBank</h3>
+          <p class="sub">Mini banking application</p>
+          <ul class="stack" aria-label="Tech stack"><li>Java 17</li><li>Spring Boot</li><li>Spring Security (JWT)</li><li>Spring Data JPA</li><li>MySQL</li><li>React</li><li>Swagger</li></ul>
+          <div class="links"><a class="btn primary" href="https://secure-bank-beta.vercel.app/login" target="_blank" rel="noopener">Live demo ↗</a><a class="btn" href="https://github.com/arjunv21ac-sudo/secure-bank" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="proof"><div class="num">40</div><div class="unit">simultaneous transfers</div><p>Opposite transfers at once, no deadlock.</p></div>
+        </div>
+        <div class="body">
+          <div><h4>What it does</h4><p>Admin account approval, deposits, withdrawals, transfers, beneficiaries and monthly PDF statements. Deployed live with Swagger API docs.</p></div>
+          <div><h4>Engineering decisions</h4>
+            <ul>
+              <li>Transfers run in a single <code>@Transactional</code> method so a failure never leaves half a transfer.</li>
+              <li>Row-level locking with ordered locks avoids deadlocks.</li>
+              <li>An Idempotency-Key prevents double payments.</li>
+              <li>Verified with multi-threaded JUnit tests.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="head">
+          <h3>Enhanced B92 QKD</h3>
+          <p class="sub">Quantum key distribution with custom privacy amplification</p>
+          <ul class="stack" aria-label="Tech stack"><li>Python</li><li>Quantum Cryptography</li><li>QKD Protocol</li><li>Simulation Metrics</li></ul>
+        </div>
+        <div class="body">
+          <div><h4>What it does</h4><p>An enhanced B92 QKD protocol with a custom privacy amplification function that measurably reduced eavesdropper information leakage.</p></div>
+          <div><h4>How it was checked</h4><p>Key security was validated through simulation metrics under various interception scenarios.</p></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><h2>Skills</h2><span class="rule"></span></div>
+    <div class="skills">
+      <div class="skill"><h3>Languages</h3><ul><li>Core Java</li><li>Advanced Java (JDBC, Collections)</li></ul></div>
+      <div class="skill"><h3>Frameworks</h3><ul><li>Spring Boot</li><li>Spring Security (JWT)</li><li>Spring Data JPA / Hibernate</li><li>JUnit</li></ul></div>
+      <div class="skill"><h3>Web</h3><ul><li>HTML5</li><li>CSS3</li><li>JavaScript (Intermediate)</li><li>React</li><li>Bootstrap</li><li>REST APIs</li></ul></div>
+      <div class="skill"><h3>Database</h3><ul><li>SQL</li><li>MySQL</li></ul></div>
+      <div class="skill"><h3>Tools</h3><ul><li>Git</li><li>Docker</li><li>Eclipse IDE</li><li>VS Code</li><li>Arduino IDE</li></ul></div>
+      <div class="skill"><h3>Concepts</h3><ul><li>OOP</li><li>Data Structures</li><li>MVC Architecture</li><li>IoT Development</li><li>VLSI Design</li></ul></div>
+      <div class="skill"><h3>ECE / EDA</h3><ul><li>MATLAB</li><li>Multisim</li><li>Optisystem</li><li>Arduino</li><li>Embedded C</li></ul></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><h2>Experience</h2><span class="rule"></span></div>
+    <div class="ledger">
+      <div class="row">
+        <div class="when">Aug 2023 – Oct 2023</div>
+        <div>
+          <div><span class="role">Intern, VLSI Design</span> <span class="org">· Maven Silicon Softech, Bengaluru</span></div>
+          <ul>
+            <li>Completed a structured VLSI Design internship programme covering RTL design methodologies and simulation workflows.</li>
+            <li>Gained hands-on exposure to digital design flows, including synthesis and functional verification techniques.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="when">Jun 2023 – Jul 2023</div>
+        <div>
+          <div><span class="role">Intern, IoT Development</span> <span class="org">· Enthu Technology Solutions Pvt Ltd, Coimbatore</span></div>
+          <ul>
+            <li>Designed user-friendly interfaces for human-device interaction in an IoT ecosystem using Arduino and Embedded C.</li>
+            <li>Diagnosed and resolved issues across LAN, WAN and voice system components, keeping the network stable.</li>
+            <li>Worked on sensor integration and real-time data handling for connected devices.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><h2>Training and education</h2><span class="rule"></span></div>
+    <div class="ledger">
+      <div class="row">
+        <div class="when">2025 – 2026</div>
+        <div>
+          <div><span class="role">Java Full Stack Development</span> <span class="org">· QSpiders, Chennai</span></div>
+          <ul><li>Core Java, Advanced Java (JDBC, Collections), SQL/MySQL, Spring Boot, Spring Data JPA, REST APIs, React, Git.</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="when">2021 – 2025</div>
+        <div>
+          <div><span class="role">B.Tech, Electronics and Communications Engineering</span> <span class="org">· Vellore Institute of Technology, Vellore</span></div>
+          <ul><li>CGPA 7.47</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="when">2020 – 2021</div>
+        <div>
+          <div><span class="role">Higher Secondary Certificate (HSC)</span> <span class="org">· Kingston Matric. Hr. Sec. School, Vellore</span></div>
+          <ul><li>72%</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Looking for a Java full stack role.</h2>
+    <p>I want to deliver clean, efficient solutions from day one. Get in touch.</p>
+    <div class="contactline">
+      <span>arjunrockesh@gmail.com</span>
+      <span>9600547693</span>
+      <span>Chennai, Tamil Nadu</span>
+    </div>
+    <div class="cta">
+      <button class="btn primary" type="button" data-copy="arjunrockesh@gmail.com">Copy email</button>
+      <button class="btn" type="button" data-copy="9600547693">Copy phone</button>
+      <a class="btn" href="https://linkedin.com/in/arjunrockesh" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <span class="small" id="copied" aria-live="polite"></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var step = reduce ? 0 : 1;
+  function $(id) { return document.getElementById(id); }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms * step); }); }
+
+  /* copy buttons */
+  var note = $('copied');
+  function say(msg) { note.textContent = msg; setTimeout(function () { note.textContent = ''; }, 2200); }
+  function fallback(text) {
+    var t = document.createElement('textarea');
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(t);
+    say(ok ? 'Copied' : 'Select the text above and copy it');
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { say('Copied ' + text); }, function () { fallback(text); });
+      } else { fallback(text); }
+    });
+  });
+
+  /* seat booking simulation */
+  var N = 20, seatMode = 'none', seatBusy = false;
+  var threadsEl = $('threads');
+  var chips = [];
+  for (var i = 0; i < N; i++) {
+    var c = document.createElement('div');
+    c.className = 't'; c.textContent = 'T' + (i + 1);
+    threadsEl.appendChild(c); chips.push(c);
+  }
+  function seatReset() {
+    chips.forEach(function (c) { c.className = 't'; });
+    $('seatsLeft').textContent = '1'; $('bookedCount').textContent = '0 booked';
+    var s = $('seatStatus'); s.className = 'status'; s.textContent = 'Press run to start 20 threads.';
+  }
+  function setSeg(a, b, first) {
+    $(a).setAttribute('aria-pressed', first ? 'true' : 'false');
+    $(b).setAttribute('aria-pressed', first ? 'false' : 'true');
+  }
+  $('seatNone').addEventListener('click', function () { if (seatBusy) return; seatMode = 'none'; setSeg('seatNone', 'seatLock', true); seatReset(); });
+  $('seatLock').addEventListener('click', function () { if (seatBusy) return; seatMode = 'lock'; setSeg('seatNone', 'seatLock', false); seatReset(); });
+  $('seatRun').addEventListener('click', async function () {
+    if (seatBusy) return;
+    seatBusy = true; seatReset();
+    var s = $('seatStatus'), booked = 0;
+    var order = chips.map(function (_, i) { return i; });
+    if (seatMode === 'none') {
+      /* all threads read "1 seat left" before any write lands */
+      var winners = 3 + Math.floor(Math.random() * 6);
+      var pick = order.slice().sort(function () { return Math.random() - 0.5; }).slice(0, winners);
+      chips.forEach(function (c) { c.className = 't queue'; });
+      s.textContent = 'All 20 threads read: 1 seat left.';
+      await wait(700);
+      for (var k = 0; k < pick.length; k++) {
+        chips[pick[k]].className = 't lose'; booked++;
+        $('bookedCount').textContent = booked + ' booked';
+        $('seatsLeft').textContent = String(1 - booked);
+        await wait(140);
+      }
+      chips.forEach(function (c) { if (c.className === 't queue') c.className = 't rej'; });
+      s.className = 'status bad';
+      s.textContent = booked + ' bookings for 1 seat. Overbooked. The count varies from run to run.';
+    } else {
+      chips.forEach(function (c) { c.className = 't queue'; });
+      s.textContent = 'Threads line up for the seat row lock.';
+      await wait(700);
+      for (var j = 0; j < N; j++) {
+        if (j === 0) {
+          chips[j].className = 't win'; booked = 1;
+          $('bookedCount').textContent = '1 booked'; $('seatsLeft').textContent = '0';
+        } else {
+          chips[j].className = 't rej';
+        }
+        await wait(90);
+      }
+      s.className = 'status ok';
+      s.textContent = '1 booking, 19 sold out. Seats left never drops below 0.';
+    }
+    seatBusy = false;
+  });
+
+  /* transfer deadlock simulation */
+  var xferMode = 'naive', xferBusy = false;
+  var scripts = {
+    naive: [
+      { a: 'free', b: 'free', log: 'T1 (A → B) locks A, its source account.' },
+      { a: 'T1', b: 'free', log: 'T2 (B → A) locks B, its source account.' },
+      { a: 'T1', b: 'T2', log: 'T1 needs B and waits for T2.' },
+      { a: 'T1', b: 'T2', log: 'T2 needs A and waits for T1.' },
+      { a: 'T1', b: 'T2', log: 'Each holds what the other needs. Deadlock.', end: 'bad' }
+    ],
+    ordered: [
+      { a: 'free', b: 'free', log: 'Rule: always lock the lower account id first. That is A.' },
+      { a: 'T1', b: 'free', log: 'T1 locks A.' },
+      { a: 'T1', b: 'free', log: 'T2 also needs A first, so it waits.' },
+      { a: 'T1', b: 'T1', log: 'T1 locks B.' },
+      { a: 'free', b: 'free', log: 'T1 moves the money, commits and releases both.' },
+      { a: 'T2', b: 'T2', log: 'T2 locks A, then B, and runs.' },
+      { a: 'free', b: 'free', log: 'T2 commits. Both transfers complete.', end: 'ok' }
+    ]
+  };
+  function acctPaint(state, end) {
+    var A = $('acctA'), B = $('acctB');
+    function paint(el, own, txt) {
+      el.className = 'acct' + (end === 'bad' ? ' dead' : end === 'ok' ? ' done' : own !== 'free' ? ' held' : '');
+      txt.textContent = own === 'free' ? 'free' : 'locked by ' + own;
+    }
+    paint(A, state.a, $('ownA')); paint(B, state.b, $('ownB'));
+  }
+  function xferReset() {
+    acctPaint({ a: 'free', b: 'free' });
+    var l = $('xferLog'); l.innerHTML = '<li>T1 moves A → B. T2 moves B → A.</li>';
+    var s = $('xferStatus'); s.className = 'status'; s.textContent = 'Press run to start both transfers.';
+  }
+  $('xferNaive').addEventListener('click', function () { if (xferBusy) return; xferMode = 'naive'; setSeg('xferNaive', 'xferOrdered', true); xferReset(); });
+  $('xferOrdered').addEventListener('click', function () { if (xferBusy) return; xferMode = 'ordered'; setSeg('xferNaive', 'xferOrdered', false); xferReset(); });
+  $('xferRun').addEventListener('click', async function () {
+    if (xferBusy) return;
+    xferBusy = true; xferReset();
+    var log = $('xferLog'), st = $('xferStatus'), list = scripts[xferMode];
+    log.innerHTML = '';
+    for (var i = 0; i < list.length; i++) {
+      var sx = list[i];
+      var li = document.createElement('li'); li.textContent = sx.log; log.appendChild(li);
+      acctPaint(sx, sx.end);
+      await wait(850);
+    }
+    var last = list[list.length - 1];
+    st.className = 'status ' + last.end;
+    st.textContent = last.end === 'bad' ? 'Both transfers hang. The database has to time one out.' : 'No cycle, no deadlock. This is the approach SecureBank uses.';
+    xferBusy = false;
+  });
+})();
+</script>
+
+</body>
+</html>
